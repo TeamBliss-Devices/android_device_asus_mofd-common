@@ -29,6 +29,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    libshim_audio \
     libtinycompress \
     libtinyalsa \
     audio.a2dp.default \
@@ -46,6 +47,11 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     bt.hfp.WideBandSpeechEnabled=true
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.mofd_v1 \
+    libshim_camera
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -67,6 +73,9 @@ PRODUCT_COPY_FILES += \
     device/asus/mofd-common/powervr.ini:system/etc/powervr.ini
 
 # GPS
+PRODUCT_PACKAGES += \
+    libshim_gpsd
+
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/configs/gps.conf:system/etc/gps.conf \
     device/asus/mofd-common/configs/gps.xml:system/etc/gps.xml
@@ -164,6 +173,10 @@ PRODUCT_PACKAGES += \
     power.mofd_v1
 
 # Radio
+PRODUCT_PACKAGES += \
+    libshim_mmgr \
+    libshim_tcs
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.status.polling.enable=0 \
     rild.libpath=/system/lib/librapid-ril-core.so \
@@ -203,17 +216,14 @@ PRODUCT_PACKAGES += \
     thermald \
     ueventd.mofd_v1.rc
 
+# Sensors
+PRODUCT_PACKAGES += \
+    libshim_sensors
+
 # Thermal itux
 ENABLE_ITUXD := true
 PRODUCT_PACKAGES += \
     ituxd
-
-# USB
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.isUsbOtgEnabled=1
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
 
 # IMG graphics
 PRODUCT_PACKAGES += \
